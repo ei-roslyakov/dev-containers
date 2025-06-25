@@ -1,0 +1,28 @@
+{
+  "name": "EI-DEV",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "options": [
+      "--platform=linux/amd64"
+    ]
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "postCreateCommand": "chmod 700 ~/.ssh && chmod 600 ~/.ssh/*",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind",
+    "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind",
+    "source=${localEnv:HOME}/.vault-token,target=/home/vscode/.vault-token,type=bind",
+    "source=${localEnv:HOME}/.zsh_history,target=/home/vscode/.zsh_history,type=bind"
+  ],
+  "features": {},
+  // "extensions": [
+  //   "hashicorp.terraform",
+  //   "redhat.ansible",
+  //   "ms-azuretools.vscode-docker",
+  //   "ms-kubernetes-tools.vscode-kubernetes-tools"
+  // ],
+  "remoteUser": "vscode"
+}
