@@ -34,7 +34,8 @@ docker run --rm -it \
   -v ~/.ssh:/home/devuser/.ssh:ro \
   -v ~/.vault-token:/home/devuser/.vault-token:ro \
   -e VAULT_TOKEN=$(cat ~/.vault-token) \
-  -w /home/devuser \
+  -e AWS_PROFILE=$AWS_PROFILE \
+  -w "/home/devuser/$(basename "$(pwd)")" \
   dev-2404:latest \
   zsh
 ```
