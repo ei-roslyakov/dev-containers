@@ -43,19 +43,6 @@ RUN curl -fsSL https://pyenv.run | bash && \
     ${PYENV_ROOT}/bin/pyenv global ${PYTHON_VERSION} && \
     pip install --upgrade pip pipenv
 
-# Install oh-my-zsh plugins and powerlevel10k theme, and configure ~/.zshrc
-RUN export ZSH="/home/vscode/.oh-my-zsh" && \
-    export ZSH_CUSTOM="${ZSH}/custom" && \
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" && \
-    git clone https://github.com/unixorn/fzf-zsh-plugin.git "${ZSH_CUSTOM}/plugins/fzf-zsh-plugin" && \
-    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-zsh-plugin)/' /home/vscode/.zshrc && \
-    sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' /home/vscode/.zshrc && \
-    echo '\n# Optional: fix fzf warning\n[ -f ~/.fzf/shell/key-bindings.zsh ] && source ~/.fzf/shell/key-bindings.zsh' >> /home/vscode/.zshrc && \
-    echo 'POWERLEVEL9K_INSTANT_PROMPT=quiet' >> /home/vscode/.zshrc && \
-    chown -R vscode:vscode /home/vscode
-
 # Configure pyenv for login shells
 RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vscode/.bashrc && \
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vscode/.bashrc && \
