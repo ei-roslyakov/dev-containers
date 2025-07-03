@@ -106,5 +106,5 @@ RUN echo '\n# Zsh history config' >> ~/.zshrc && \
     echo 'setopt share_history' >> ~/.zshrc && \
     echo 'setopt hist_ignore_dups' >> ~/.zshrc && \
     echo 'setopt hist_find_no_dups' >> ~/.zshrc && \
-    echo 'setopt hist_reduce_blanks' >> ~/.zshrc \
+    echo 'setopt hist_reduce_blanks' >> ~/.zshrc && \
     echo 'source ~/.zsh_aliases' >> ~/.zshrc
