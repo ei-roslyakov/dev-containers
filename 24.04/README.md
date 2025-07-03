@@ -30,9 +30,11 @@ Run the container with mounted volumes and Vault token:
 ```bash
 docker run --rm -it \
   -v "$(pwd)":"/home/devuser/$(basename "$(pwd)")" \
-  -v ~/.aws:/home/devuser/.aws:ro \
-  -v ~/.ssh:/home/devuser/.ssh:ro \
-  -v ~/.vault-token:/home/devuser/.vault-token:ro \
+  -v ~/.aws:/home/devuser/.aws \
+  -v ~/.ssh:/home/devuser/.ssh \
+  -v ~/.vault-token:/home/devuser/.vault-token \
+  -v $HOME/.zsh_aliases:/home/devuser/.zsh_aliases \
+  -v $HOME/.zsh_history:/home/devuser/.zsh_history \
   -e VAULT_TOKEN=$(cat ~/.vault-token) \
   -e AWS_PROFILE=$AWS_PROFILE \
   -w "/home/devuser/$(basename "$(pwd)")" \

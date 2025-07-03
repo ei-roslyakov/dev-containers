@@ -11,6 +11,7 @@ ARG KUBECTL_VERSION=v1.30.1
 ARG PYTHON_VERSION=3.11.9
 ARG TERRAFORM_VERSION=1.11.4
 ARG TERRAGRUNT_VERSION=0.80.2
+ARG VAULT_VERSION=1.17.0
 
 # Create a non-root user
 ARG USERNAME=devuser
@@ -33,6 +34,12 @@ RUN apt-get update && apt-get install -y \
     tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
     zsh fzf fonts-powerline sudo \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Vault
+RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o vault.zip && \
+    unzip vault.zip && \
+    install -o root -g root -m 0755 vault /usr/local/bin/vault && \
+    rm vault vault.zip
 
 # Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o awscliv2.zip && \
