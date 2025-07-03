@@ -76,3 +76,27 @@ WORKDIR /home/$USERNAME
 
 # Set default user
 USER $USERNAME
+
+# Install Zsh plugins
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
+    ~/.fzf/install --key-bindings --completion --no-update-rc && \
+    mkdir -p ~/.zsh/plugins && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions && \
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/plugins/zsh-syntax-highlighting && \
+    git clone https://github.com/unixorn/fzf-zsh-plugin ~/.zsh/plugins/fzf-zsh-plugin && \
+    echo '# Zsh plugin and FZF setup' >> ~/.zshrc && \
+    echo 'source ~/.fzf/shell/key-bindings.zsh' >> ~/.zshrc && \
+    echo 'source ~/.fzf/shell/completion.zsh' >> ~/.zshrc && \
+    echo 'source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc && \
+    echo 'source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zshrc && \
+    echo 'source ~/.zsh/plugins/fzf-zsh-plugin/fzf-zsh-plugin.plugin.zsh' >> ~/.zshrc
+
+RUN echo '\n# Zsh history config' >> ~/.zshrc && \
+    echo 'export HISTFILE=~/.zsh_history' >> ~/.zshrc && \
+    echo 'export HISTSIZE=10000' >> ~/.zshrc && \
+    echo 'export SAVEHIST=10000' >> ~/.zshrc && \
+    echo 'setopt inc_append_history' >> ~/.zshrc && \
+    echo 'setopt share_history' >> ~/.zshrc && \
+    echo 'setopt hist_ignore_dups' >> ~/.zshrc && \
+    echo 'setopt hist_find_no_dups' >> ~/.zshrc && \
+    echo 'setopt hist_reduce_blanks' >> ~/.zshrc
