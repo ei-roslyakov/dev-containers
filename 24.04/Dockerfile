@@ -27,7 +27,7 @@ RUN groupadd --gid $USER_GID $USERNAME && \
 
 # Install base packages
 RUN apt-get update && apt-get install -y \
-    curl unzip wget git jq gnupg ca-certificates \
+    rsync curl unzip wget git jq gnupg ca-certificates \
     openssh-client software-properties-common \
     build-essential libssl-dev zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev libncursesw5-dev xz-utils \
@@ -106,4 +106,5 @@ RUN echo '\n# Zsh history config' >> ~/.zshrc && \
     echo 'setopt share_history' >> ~/.zshrc && \
     echo 'setopt hist_ignore_dups' >> ~/.zshrc && \
     echo 'setopt hist_find_no_dups' >> ~/.zshrc && \
-    echo 'setopt hist_reduce_blanks' >> ~/.zshrc
+    echo 'setopt hist_reduce_blanks' >> ~/.zshrc \
+    echo 'source ~/.zsh_aliases' >> ~/.zshrc
