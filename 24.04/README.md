@@ -1,6 +1,6 @@
-# 🐳 Ansible Dev Docker Image
+# 🐳 Ubuntu 24.04 Dev Docker Image
 
-A development container for running Ansible with AWS, SSH, Vault, and custom Python tools preconfigured.
+A development container for running 24.04 with AWS, SSH, Vault, and custom Python tools preconfigured.
 
 ---
 
@@ -48,8 +48,6 @@ docker run --rm -it \
 - `~/.ssh`: SSH keys.
 - `~/.vault-token`: Vault token file.
 - `VAULT_TOKEN`: Environment variable to use with HashiCorp Vault.
-
-> 🔐 Your token and keys are mounted read-only for safety.
 
 ---
 
