@@ -39,7 +39,6 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.version }}
             type=sha,format=short,prefix=${{ matrix.version }}-
-            type=ref,event=branch
           labels: |
             org.opencontainers.image.version=${{ matrix.version }}
             org.opencontainers.image.source=${{ github.repositoryUrl }}

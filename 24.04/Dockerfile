@@ -5,14 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PIP_BREAK_SYSTEM_PACKAGES=1 \
     POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# Tool Versions
-ARG AWS_CLI_VERSION=2.15.0
-ARG KUBECTL_VERSION=v1.30.1
-ARG PYTHON_VERSION=3.11.9
-ARG TERRAFORM_VERSION=1.11.4
-ARG TERRAGRUNT_VERSION=0.80.2
-ARG VAULT_VERSION=1.17.0
-
 # Create a non-root user
 ARG USERNAME=devuser
 ARG USER_UID=2000
@@ -34,6 +26,14 @@ RUN apt-get update && apt-get install -y \
     tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
     zsh fzf fonts-powerline sudo \
     && rm -rf /var/lib/apt/lists/*
+
+# Tool Versions
+ARG AWS_CLI_VERSION=2.29.0
+ARG KUBECTL_VERSION=v1.34.0
+ARG PYTHON_VERSION=3.13.7
+ARG TERRAFORM_VERSION=1.13.2
+ARG TERRAGRUNT_VERSION=0.87.1
+ARG VAULT_VERSION=1.20.3
 
 # Install Vault
 RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o vault.zip && \
