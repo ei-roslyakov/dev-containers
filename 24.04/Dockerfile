@@ -18,7 +18,7 @@ RUN groupadd --gid $USER_GID $USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Install base packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     rsync curl unzip wget git jq gnupg ca-certificates \
     openssh-client software-properties-common \
     build-essential libssl-dev zlib1g-dev libbz2-dev \

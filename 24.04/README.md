@@ -8,12 +8,17 @@ A development container for running 24.04 with AWS, SSH, Vault, and custom Pytho
 
 ### For **amd64**:
 ```bash
-docker buildx build --platform linux/amd64 -t dev-2404:latest .
+docker buildx build --platform=linux/amd64 -t dev-2404:latest .
 ```
 
 ### For **arm64** (e.g., Apple Silicon M1/M2):
 ```bash
 docker buildx build --platform linux/arm64 -t dev-2404:latest .
+```
+
+### For both architectures:
+```bash
+docker buildx build --platform="linux/amd64,linux/arm64" -t dev-2404:latest .
 ```
 
 > ℹ️ Ensure Docker BuildKit is enabled and `buildx` is set up:
