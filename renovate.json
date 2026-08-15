@@ -5,6 +5,12 @@
       "description": "Group Docker base image updates into one PR",
       "matchManagers": ["dockerfile"],
       "groupName": "docker-images"
+    },
+    {
+      "description": "Each directory pins its own Ubuntu release — never bump the base image version",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ubuntu"],
+      "enabled": false
     }
   ]
 }
