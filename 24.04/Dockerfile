@@ -29,11 +29,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 # Tool Versions
 ARG AWS_CLI_VERSION=2.29.0
-ARG KUBECTL_VERSION=v1.34.0
+ARG KUBECTL_VERSION=v1.36.2
 ARG PYTHON_VERSION=3.13.7
-ARG TERRAFORM_VERSION=1.13.2
-ARG TERRAGRUNT_VERSION=0.87.1
-ARG VAULT_VERSION=1.20.3
+ARG TERRAFORM_VERSION=1.15.8
+ARG TERRAGRUNT_VERSION=1.1.3
+ARG VAULT_VERSION=2.0.4
 
 # Install Vault
 RUN curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o vault.zip && \
@@ -77,6 +77,9 @@ RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc && \
 # Install specific Terraform and Terragrunt versions
 RUN tfswitch ${TERRAFORM_VERSION} && \
     tgswitch ${TERRAGRUNT_VERSION}
+
+USER root
+RUN rm -rf /tmp/*
 
 # Set working directory
 WORKDIR /home/$USERNAME
